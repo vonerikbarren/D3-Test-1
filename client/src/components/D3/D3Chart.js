@@ -10,10 +10,10 @@ export default class D3Chart {
 
 		vis.svg = d3.select(element)
 			.append("svg")
-				.attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
-				.attr("height", HEIGHT + MARGIN.TOP + MARGIN.BOTTOM)
+			.attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
+			.attr("height", HEIGHT + MARGIN.TOP + MARGIN.BOTTOM)
 			.append("g")
-				.attr("transform", `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
+			.attr("transform", `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
 
 		vis.xLabel = vis.svg.append("text")
 			.attr("x", WIDTH / 2)
@@ -50,8 +50,8 @@ export default class D3Chart {
 
 		const y = d3.scaleLinear()
 			.domain([
-				d3.min(vis.data, d => d.height) * 0.95, 
-				d3.max(vis.data, d =>  d.height)
+				d3.min(vis.data, d => d.height) * 0.95,
+				d3.max(vis.data, d => d.height)
 			])
 			.range([HEIGHT, 0])
 
@@ -73,9 +73,9 @@ export default class D3Chart {
 		// EXIT
 		rects.exit()
 			.transition().duration(500)
-				.attr("height", 0)
-				.attr("y", HEIGHT)
-				.remove()
+			.attr("height", 0)
+			.attr("y", HEIGHT)
+			.remove()
 
 		// UPDATE
 		rects.transition().duration(500)
@@ -88,12 +88,12 @@ export default class D3Chart {
 		rects.enter().append("rect")
 			.attr("x", d => x(d.name))
 			.attr("width", x.bandwidth)
-			.attr("fill", "grey")
+			.attr("fill", "brown")
 			.attr("y", HEIGHT)
 			.transition().duration(500)
-				.attr("height", d => HEIGHT - y(d.height))
-				.attr("y", d => y(d.height))
+			.attr("height", d => HEIGHT - y(d.height))
+			.attr("y", d => y(d.height))
 
-			console.log(rects)
+		console.log(rects)
 	}
 }
